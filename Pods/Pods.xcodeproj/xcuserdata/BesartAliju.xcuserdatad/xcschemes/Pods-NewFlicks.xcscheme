@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '83C73FE4F3D7EC72B21E7654'
+               BlueprintIdentifier = 'C916DF35CFF9E4212F8BE312'
                BlueprintName = 'Pods-NewFlicks'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Pods_NewFlicks.framework'>

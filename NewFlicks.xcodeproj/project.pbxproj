@@ -14,6 +14,7 @@
 		DF4DC4801C71907A0097D848 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF4DC47E1C71907A0097D848 /* LaunchScreen.storyboard */; };
 		DF7DC5591C71910C00672883 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7DC5581C71910C00672883 /* MoviesViewController.swift */; };
 		DF7DC55C1C71987800672883 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7DC55B1C71987800672883 /* MovieCell.swift */; };
+		DF821BEC1C78453C005F71C3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF821BEB1C78453C005F71C3 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		DF4DC4811C71907A0097D848 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF7DC5581C71910C00672883 /* MoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		DF7DC55B1C71987800672883 /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		DF821BEB1C78453C005F71C3 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		FA2783E9D32B64D337E374B8 /* Pods-NewFlicks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewFlicks.release.xcconfig"; path = "Pods/Target Support Files/Pods-NewFlicks/Pods-NewFlicks.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				DF7DC5581C71910C00672883 /* MoviesViewController.swift */,
+				DF821BEB1C78453C005F71C3 /* DetailViewController.swift */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 				DF4DC4761C71907A0097D848 /* AppDelegate.swift in Sources */,
 				DF7DC5591C71910C00672883 /* MoviesViewController.swift in Sources */,
 				DF7DC55C1C71987800672883 /* MovieCell.swift in Sources */,
+				DF821BEC1C78453C005F71C3 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
