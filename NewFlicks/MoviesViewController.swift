@@ -16,6 +16,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var tableView: UITableView!
     
     var movies: [NSDictionary]?
+    let refreshControl = UIRefreshControl()
+    var endpoint: String!
     
     
     override func viewDidLoad() {
@@ -27,8 +29,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         loadDataFromNetwork()
         
-        
-        let refreshControl = UIRefreshControl()
+    
         refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)
         tableView.insertSubview(refreshControl, atIndex: 0)
         
@@ -45,7 +46,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     func loadDataFromNetwork() {
         // ... Create the NSURLRequest (myRequest) ...
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
+        let url = NSURL(string: "https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
         let request = NSURLRequest(
             URL: url!,
             cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
