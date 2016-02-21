@@ -14,6 +14,10 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
+    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var releaseDateLabel: UILabel!
+    
+    
     
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -31,6 +35,13 @@ class DetailViewController: UIViewController {
         
         let overview = movie["overview"] as? String
         overviewLabel.text = overview
+        
+        let rating = movie["vote_average"] as! NSNumber
+        ratingLabel.text = "Rating: \(rating)/10"
+        
+        let releaseDate = movie["release_date"] as! String
+        releaseDateLabel.text = "Release Date: \(releaseDate)"
+        
         
         overviewLabel.sizeToFit()
         

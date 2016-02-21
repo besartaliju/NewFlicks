@@ -132,6 +132,17 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         task.resume()
     }
     
+    /*func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        //table view function that runs when an item is selected
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        print("item selected")
+        print(indexPath)
+        
+        
+    }
+*/
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
         
