@@ -8,18 +8,18 @@ Time spent: 11 hours spent in total
 
 The following **required** functionality is complete:
 
-- [XX] User can view a list of movies currently playing in theaters from The Movie Database.
-- [XX] Poster images are loaded using the UIImageView category in the AFNetworking library.
-- [XX] User sees a loading state while waiting for the movies API.
-- [XX] User can pull to refresh the movie list.
+- [X] User can view a list of movies currently playing in theaters from The Movie Database.
+- [X] Poster images are loaded using the UIImageView category in the AFNetworking library.
+- [X] User sees a loading state while waiting for the movies API.
+- [X] User can pull to refresh the movie list.
 
 The following **optional** features are implemented:
 
-- [XX] User sees an error message when there's a networking error.
+- [X] User sees an error message when there's a networking error.
 - [ ] Movies are displayed using a CollectionView instead of a TableView.
-- [XX] User can search for a movie.
+- [X] User can search for a movie.
 - [ ] All images fade in as they are loading.
-- [XX] Customize the UI.
+- [X] Customize the UI.
 
 The following **additional** features are implemented:
 
@@ -84,7 +84,6 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
 - Didn't improve app functionality so much as I designed a new UI with specific color schemes inspired by a very old Adidas sweater that had a very monochromatic look. I thought that would've looked good for movies since they started in black and white, which as a result, has some sort of grey in it. 
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
@@ -102,7 +101,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+I happened to turn of user interaction enabled by accident which resulted in me spending over 2 hours trying to debug the app. Furthermore, I felt really accomplished with this app. Of course, I would have liked to add a search bar, but specifically for this app, I felt that a table view looked better than the collection view. It might be of dissenting opinion but still. 
 
 ## License
 
