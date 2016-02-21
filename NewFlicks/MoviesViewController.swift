@@ -14,6 +14,10 @@ import MBProgressHUD
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var networkLabel: UILabel!
+    
+    
+    
     
     var movies: [NSDictionary]?
     let refreshControl = UIRefreshControl()
@@ -23,11 +27,22 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if Reachability.isConnectedToNetwork() == true {
+            //println("Internet connection OK")
+            networkLabel.hidden = true
+        } else {
+            //println("Internet connection FAILED")
+            tableView.alpha = 10.0
+            networkLabel.backgroundColor = UIColor.whiteColor()
+            networkLabel.hidden = false
+        }
+        
         tableView.dataSource = self
         tableView.delegate = self
         
-        
         loadDataFromNetwork()
+        
+        tableView.backgroundColor = UIColor.lightGrayColor()
         
     
         refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)
@@ -45,6 +60,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func loadDataFromNetwork() {
         // ... Create the NSURLRequest (myRequest) ...
+        
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         let url = NSURL(string: "https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
         let request = NSURLRequest(
@@ -91,60 +107,77 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func refreshControlAction(refreshControl: UIRefreshControl) {
-        
-        // ... Create the NSURLRequest (mequest) ...
-        let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
-        let request = NSURLRequest(
-            URL: url!,
-            cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
-            timeoutInterval: 10)
-
-        
-        // Configure session so that completion handler is executed on main UI thread
-        let session = NSURLSession(
-            configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
-            delegate:nil,
-            delegateQueue:NSOperationQueue.mainQueue()
-        )
-        
-        let task : NSURLSessionDataTask = session.dataTaskWithRequest(request,
-            completionHandler: { (dataOrNil, response, error) in
-                
-                // ... Use the new data to update the data source ...
-                if let data = dataOrNil {
-                    if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
-                        data, options:[]) as? NSDictionary {
-                            print("response: \(responseDictionary)")
-                            
-                            self.movies = responseDictionary["results"] as! [NSDictionary]
-                            self.tableView.reloadData()
+        if Reachability.isConnectedToNetwork() == true {
+            //println("Internet connection OK")
+            networkLabel.hidden = true
+            // ... Create the NSURLRequest (request) ...
+            let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
+            let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
+            let request = NSURLRequest(
+                URL: url!,
+                cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
+                timeoutInterval: 10)
+            
+            
+            // Configure session so that completion handler is executed on main UI thread
+            let session = NSURLSession(
+                configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
+                delegate:nil,
+                delegateQueue:NSOperationQueue.mainQueue()
+            )
+            
+            let task : NSURLSessionDataTask = session.dataTaskWithRequest(request,
+                completionHandler: { (dataOrNil, response, error) in
+                    
+                    // ... Use the new data to update the data source ...
+                    if let data = dataOrNil {
+                        if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
+                            data, options:[]) as? NSDictionary {
+                                print("response: \(responseDictionary)")
+                                
+                                self.movies = responseDictionary["results"] as! [NSDictionary]
+                                self.tableView.reloadData()
+                        }
                     }
-                }
-
-                
-                // Reload the tableView now that there is new data
-                self.tableView.reloadData()
-                
-                // Tell the refreshControl to stop spinning
-                refreshControl.endRefreshing()	
-        });
-        task.resume()
+                    
+                    
+                    // Reload the tableView now that there is new data
+                    self.tableView.reloadData()
+                    
+                    // Tell the refreshControl to stop spinning
+                    refreshControl.endRefreshing()	
+            });
+            task.resume()
+        } else {
+            //println("Internet connection FAILED")
+            tableView.alpha = 10.0
+            networkLabel.backgroundColor = UIColor.whiteColor()
+            networkLabel.hidden = false
+        }
     }
     
-    /*func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //table view function that runs when an item is selected
         
+        let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
+        
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        print("item selected")
-        print(indexPath)
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.lightGrayColor()
+        backgroundView.alpha = 80.0
+        cell.titleLabel.hidden = true
+        cell.overviewLabel.hidden = true
+        cell.selectedBackgroundView = backgroundView
+       // print("item selected")
+       // print(indexPath)
         
         
     }
-*/
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
+        
+        cell.backgroundColor = UIColor.blackColor()
         
         
         let movie = movies![indexPath.row]
@@ -162,7 +195,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         
         
-        print("row\(indexPath.row)")
+       // print("row\(indexPath.row)")
         return cell
     }
 
@@ -183,6 +216,5 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         print("prepare for segue called")
         // Pass the selected object to the new view controller.
     }
- 
-
+    
 }
